@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">    
+    <style>
+
+        /* PRIMARY COLOR: #4c6ef5 (INDIGO 5) */
+        /* PRIMARY COLOR SHADE: #3b5bdb (INDIGO 8) */
+        /* TEXT COLOR: #212529 */
+
+        :root{
+            --text-primary: #4c6ef5;
+            --text-default: #212529;
+            --text-white: #f8f9fa;
+
+            --background-white: #f1f3f5;
+            --background-white-shade-light: #edf2ff;
+            --background-white-shade: #d9dbdd;
+            --background-primary: #4c6ef5;
+            --background-primary-shade: #4263eb;
+            --background-tertiary: #ff922b;
+        }
+
+        * {
+            font-family: 'Poppins', Arial, Helvetica, sans-serif;
+            text-wrap: pretty;
+        }
+
+        body{
+            background: var(--background-white);
+            color: var(--text-default);
+        }
+
+        h1, h2, h3, h4, h5 {
+           line-height: 1.5;
+           letter-spacing: -2px; 
+        }
+
+        h1{
+            font-size: 48px;
+        }
+
+        h2{
+           font-size: 36px; 
+        }
+
+        h3{
+            font-size: 30px;
+        }
+
+        h4{
+            font-size: 24px;
+        }
+
+        h5{
+            font-size: 20px;
+        }
+
+        p{
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        p, a{
+            font-size: 16px;
+        }
+
+        .small{
+            font-size: 12px;
+        }
+
+        header{
+            text-align: center;
+            max-width: 750px;
+            margin: 4.75rem auto auto auto;
+        }
+
+        span{
+            color: var(--text-primary);
+        }
+
+        img{
+            display: block;
+            width: 100%;
+        }
+
+        .category-selector{
+            display: flex;
+            flex-wrap: wrap;
+            list-style: none;
+            gap: 0.25rem;
+        }
+
+        .category-selector li{
+            margin-bottom: 5px;
+        }
+
+        .category-selector li a{
+            color: var(--text-white);
+            background: var(--background-primary);
+            text-decoration: none;
+
+            padding: 0.25rem 10px 0.25rem 10px;
+            border-radius: 50px;
+            transition: 100ms all ease;
+        }
+
+        .category-selector li a:hover{
+            background: var(--background-primary-shade);
+        }
+
+        section{
+            max-width: 1000px;
+            margin: 4.75rem auto auto auto;
+        }
+
+        .products{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 200px);
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .product-card{
+            cursor: pointer;
+
+            border-radius: 15px;
+            background: var(--background-white-shade-light);
+
+            box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+            -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);        
+        }
+
+        .product-card img{
+            background: var(--background-tertiary);
+            width: 100%;
+            display: block;
+            aspect-ratio: 1;
+            border-radius: 15px 15px 0px 0px;
+        }
+
+        .product-card p{
+            padding: 10px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <h1>Sorting arrays using <span>JavaScript</span></h1>
+        <p>On this project using JavaScript we will sort arrays. This can be used for sorting products on e-commerce websites. We will use the array.filter() function to filter the arrays that contain the data</p>
+    
+        <ul class="category-selector">
+            <li><a href="#" data-category="all-products">All Products</a></li>
+            <li><a href="#" data-category="food-items">Food Items</a></li>
+            <li><a href="#" data-category="appliances">Appliances</a></li>
+            <li><a href="#" data-category="electronics">Electronics</a></li>
+        </ul>
+    </header>
+
+    <section>
+        <h4>All Products</h4>
+
+        <div class="products">
+            <div class="product-card">
+               <img src="img/microwavable-pizza.png" alt="">
+               <p>Wireless Bluetooth Headphones</p>
+            </div>
+
+            <div class="product-card">
+               <img src="img/wireless-headphones.jpg" alt="">
+               <p>Wireless Bluetooth Headphones</p>
+            </div>
+            
+            <div class="product-card">
+               <img src="img/wireless-headphones.jpg" alt="">
+               <p>Wireless Bluetooth Headphones</p>
+            </div>
+            
+            <div class="product-card">
+               <img src="img/wireless-headphones.jpg" alt="">
+               <p>Wireless Bluetooth Headphones</p>
+            </div>            
+        </div>
+    </section>
+</body>
+<script src="products.js"></script>
+<script>
+    const categoryLinks = document.querySelectorAll('a[data-category]');
+
+    const loadProducts = (products)=>{
+        const productsContainer = document.querySelector(".products");
+        productsContainer.innerHTML = "";
+
+        products.forEach(product => {
+            productsContainer.innerHTML += `
+                <div class="product-card">
+                <img src="${product.image}" alt="">
+                <p>${product.title}</p>
+                </div>                  
+            `;    
+        });
+    };
+
+    const filterProducts = (category)=>{
+        return products.filter((product) => {
+                if(category === "all-products"){
+                    return true;
+                }else if(product.category === category){
+                    return true;
+                }else{
+                    return false;
+                }
+            });
+    };
+
+    for(let i = 0; i < categoryLinks.length; i++){
+        categoryLinks[i].addEventListener("click", (e)=>{
+            e.preventDefault(); // Preventing the link from refreshing the page
+            let category = categoryLinks[i].getAttribute('data-category');
+            
+            loadProducts(filterProducts(category));
+        });
+    }
+
+</script>
+</html>
